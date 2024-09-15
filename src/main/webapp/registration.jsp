@@ -17,7 +17,8 @@
 <body>
 	<input type="hidden" id="status"
 		value="<%=request.getAttribute("status")%>">
-	<input type="hidden" id="agree" value="<%=request.getAttribute("agree")%>">
+	<input type="hidden" id="agree"
+		value="<%=request.getAttribute("agree")%>">
 	<div class="main">
 
 		<!-- Sign up form -->
@@ -32,28 +33,25 @@
 							<div class="form-group">
 								<label for="name"><i
 									class="zmdi zmdi-account material-icons-name"></i></label> <input
-									type="text" name="name" id="name" placeholder="Your Name"
-									required="required" />
+									type="text" name="name" id="name" placeholder="Your Name" />
 							</div>
 							<div class="form-group">
 								<label for="email"><i class="zmdi zmdi-email"></i></label> <input
-									type="email" name="email" id="email" placeholder="Your Email"
-									required="required" />
+									type="email" name="email" id="email" placeholder="Your Email" />
 							</div>
 							<div class="form-group">
 								<label for="pass"><i class="zmdi zmdi-lock"></i></label> <input
-									type="password" name="pass" id="pass" placeholder="Password"
-									required="required" />
+									type="password" name="pass" id="pass" placeholder="Password" />
 							</div>
 							<div class="form-group">
 								<label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
 								<input type="password" name="re_pass" id="re_pass"
-									placeholder="Repeat your password" required="required" />
+									placeholder="Repeat your password" />
 							</div>
 							<div class="form-group">
 								<label for="contact"><i class="zmdi zmdi-lock-outline"></i></label>
 								<input type="text" name="contact" id="contact"
-									placeholder="Contact no" required="required" />
+									placeholder="Contact no" />
 							</div>
 							<div class="form-group">
 								<input type="checkbox" name="agree-term" id="agree-term"
@@ -69,16 +67,17 @@
 									class="form-submit" value="Register" onclick=term() />
 							</div>
 							<script type=text/javascript>
-							function term(){
+								function term() {
 									var agree = document
 											.getElementById("agree-term").checked;
 									if (!agree) {
-										swal("Error!",
+										swal(
+												"Error!",
 												"Please accept the Terms and Conditions",
 												"error");
 									}
-							}
-								</script>
+								}
+							</script>
 						</form>
 					</div>
 					<div class="signup-image">
@@ -102,6 +101,20 @@
 		var status = document.getElementById("status").value;
 		if (status == "success") {
 			swal("Congrats!", "Account Created Successfully", "success");
+		} else if (status == "failed") {
+			swal("Sorry!", "Failed to create Accouunt", "error");
+		} else if (status == "invalidName") {
+			swal("Error!", "Please Enter Name", "error");
+		} else if (status == "invalidEmail") {
+			swal("Error!", "Please Enter Email", "error");
+		} else if (status == "invalidUpwd") {
+			swal("Error!", "Please Enter Password", "error");
+		} else if (status == "invalidConfirmPassword") {
+			swal("Error!", "Passwords do not match", "error");
+		} else if (status == "invalidMobile") {
+			swal("Error!", "Please Enter Mobile Number", "error");
+		} else if (status == "invalidMobileLength") {
+			swal("Error!", "Mobile Number must me 10 digits", "error");
 		}
 	</script>
 </body>
