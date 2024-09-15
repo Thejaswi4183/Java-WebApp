@@ -12,10 +12,12 @@
 
 <!-- Main css -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="alert/dist/sweetalert.css">
 </head>
 <body>
 	<input type="hidden" id="status"
 		value="<%=request.getAttribute("status")%>">
+	<input type="hidden" id="agree" value="<%=request.getAttribute("agree")%>">
 	<div class="main">
 
 		<!-- Sign up form -->
@@ -30,37 +32,53 @@
 							<div class="form-group">
 								<label for="name"><i
 									class="zmdi zmdi-account material-icons-name"></i></label> <input
-									type="text" name="name" id="name" placeholder="Your Name" />
+									type="text" name="name" id="name" placeholder="Your Name"
+									required="required" />
 							</div>
 							<div class="form-group">
 								<label for="email"><i class="zmdi zmdi-email"></i></label> <input
-									type="email" name="email" id="email" placeholder="Your Email" />
+									type="email" name="email" id="email" placeholder="Your Email"
+									required="required" />
 							</div>
 							<div class="form-group">
 								<label for="pass"><i class="zmdi zmdi-lock"></i></label> <input
-									type="password" name="pass" id="pass" placeholder="Password" />
+									type="password" name="pass" id="pass" placeholder="Password"
+									required="required" />
 							</div>
 							<div class="form-group">
 								<label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
 								<input type="password" name="re_pass" id="re_pass"
-									placeholder="Repeat your password" />
+									placeholder="Repeat your password" required="required" />
 							</div>
 							<div class="form-group">
 								<label for="contact"><i class="zmdi zmdi-lock-outline"></i></label>
 								<input type="text" name="contact" id="contact"
-									placeholder="Contact no" />
+									placeholder="Contact no" required="required" />
 							</div>
 							<div class="form-group">
 								<input type="checkbox" name="agree-term" id="agree-term"
-									class="agree-term" /> <label for="agree-term"
-									class="label-agree-term"><span><span></span></span>I
+									class="agree-term" required="required" /> <label
+									for="agree-term" class="label-agree-term"><span><span></span></span>I
 									agree all statements in <a href="#" class="term-service">Terms
 										of service</a></label>
+
+
 							</div>
 							<div class="form-group form-button">
 								<input type="submit" name="signup" id="signup"
-									class="form-submit" value="Register" />
+									class="form-submit" value="Register" onclick=term() />
 							</div>
+							<script type=text/javascript>
+							function term(){
+									var agree = document
+											.getElementById("agree-term").checked;
+									if (!agree) {
+										swal("Error!",
+												"Please accept the Terms and Conditions",
+												"error");
+									}
+							}
+								</script>
 						</form>
 					</div>
 					<div class="signup-image">
@@ -80,7 +98,6 @@
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<link rel="stylesheet" href="alert/dist/sweetalert.css">
 	<script type=text/javascript>
 		var status = document.getElementById("status").value;
 		if (status == "success") {
